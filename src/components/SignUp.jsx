@@ -45,17 +45,14 @@ const useStyles = makeStyles(theme => ({
 
 function SignUp(props) {
   const classes = useStyles();
-  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
 
   const handleSubmit = e => {
     e.preventDefault();
-    axios.post('#', {username, password1: password, password2})
-    .then(res => console.log(res))
+    axios.post('https://lambda-mud-test.herokuapp.com/api/registration/', {username, password1: password, password2})
+    .then(res => localStorage.setItem('token', res.data.key))
     .catch(err => console.log(err))
   };
 
