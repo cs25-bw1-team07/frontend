@@ -74,7 +74,7 @@ function SignIn(props) {
             required
             fullWidth
             id="user"
-            label="Email or Username"
+            label="Username"
             name="user"
             autoComplete="user"
             autoFocus

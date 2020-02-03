@@ -71,33 +71,6 @@ function SignUp(props) {
         </Typography>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-                value={firstName}
-                onChange={e => setFirstName(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-                value={lastName}
-                onChange={e => setLastName(e.target.value)}
-              />
-            </Grid>
             <Grid item xs={12}>
               <TextField
                 variant="outlined"
@@ -109,20 +82,6 @@ function SignUp(props) {
                 autoComplete="Username"
                 value={username}
                 onChange={e => setUsername(e.target.value)}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                value={email}
-                error={props.errors && props.errors.email ? true : false}
-                onChange={e => setEmail(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
