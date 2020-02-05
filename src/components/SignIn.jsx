@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -11,6 +12,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import styled from 'styled-components';
 import axios from 'axios';
+
+const URL = "https://lambda-cs25-mud.herokuapp.com/api/login";
 
 const ImgStyle = styled.div`
   img {
@@ -46,16 +49,21 @@ const useStyles = makeStyles(theme => ({
 
 function SignIn(props) {
   const classes = useStyles();
-  const handleSubmit = async e => {
+  const history = useHistory();
+  const [username, setUser] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleSubmit (e) {
     e.preventDefault();
-    axios.post('https://lambda-mud-test.herokuapp.com/api/login/', {username: user, password})
-    .then(res => console.log(res))
+	const packet = {
+		username,
+		password
+	};
+    axios.post(URL, packet)
     .then(res => localStorage.setItem('token', res.data.key))
     .catch(err => console.log(err))
-  };
-
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
+	history.push("/game");
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -79,7 +87,7 @@ function SignIn(props) {
             name="user"
             autoComplete="user"
             autoFocus
-            value={user}
+            value={username}
             onChange={e => setUser(e.target.value)}
           />
           <TextField
@@ -116,7 +124,7 @@ function SignIn(props) {
             </Grid>
             <Grid item>
               <Link
-                onClick={() => props.handleToggle()}
+                onClick={() => history.push("/signup")}
                 variant="body2"
                 style={{ cursor: "pointer" }}
               >

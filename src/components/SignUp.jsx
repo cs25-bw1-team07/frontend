@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -9,6 +10,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import styled from 'styled-components';
 import axios from 'axios';
+
+const URL = "https://lambda-cs25-mud.herokuapp.com/api/registration/";
 
 const ImgStyle = styled.div`
   img {
@@ -45,17 +48,25 @@ const useStyles = makeStyles(theme => ({
 
 function SignUp(props) {
   const classes = useStyles();
-  const [password, setPassword] = useState("");
+  const [password1, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [username, setUsername] = useState("");
+  const history = useHistory();
 
   const handleSubmit = e => {
     e.preventDefault();
-    axios.post('https://lambda-mud-test.herokuapp.com/api/registration/', {username, password1: password, password2})
-    .then(res => console.log(res))
+
+	const packet = {
+		password1,
+		password2,
+		username
+	};
+
+    axios.post(URL, packet)
     .then(res => localStorage.setItem('token', res.data.key))
     .catch(err => console.log(err))
-  };
+	history.push("/game");
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -92,7 +103,7 @@ function SignUp(props) {
                 type="password"
                 id="password"
                 autoComplete="Current Password"
-                value={password}
+                value={password1}
                 onChange={e => setPassword(e.target.value)}
               />
             </Grid>
@@ -123,7 +134,7 @@ function SignUp(props) {
           <Grid container justify="flex-end">
             <Grid item>
               <Link
-                onClick={() => props.handleToggle()}
+                onClick={() => history.push("/signin")}
                 variant="body2"
                 style={{ cursor: "pointer" }}
               >

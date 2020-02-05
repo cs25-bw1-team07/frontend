@@ -1,20 +1,28 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { 
-	Route
+	Route,
+	Switch
 } from "react-router-dom";
-import Onboard from './components/Onboard'
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
+import PrivateRoute from "./components/utils/PrivateRoute.js";
 
 import './App.css'
+
+function Game () {
+	return <div>Here is the game</div>;
+}
 
 function App() {
 		
   return (
     <div className="App">
       <header className="App-header">
-		<Route exact path="/" component={SignUp} />
-		<Route path="/signin" component={SignIn} />
+		<Switch>
+			<Route exact path="/" component={SignUp} />
+			<Route path="/signin" component={SignIn} />
+			<PrivateRoute path="/game" component={Game} />
+		</Switch>
       </header>
     </div>
   );
