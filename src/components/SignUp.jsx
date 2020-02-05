@@ -57,16 +57,12 @@ function SignUp(props) {
     e.preventDefault();
 
 	const packet = {
-		headers: {
-			"Access-Control-Allow-Origin": "*"
-		},
 		password1,
 		password2,
 		username
 	};
 
     axios.post(URL, packet)
-    .then(res => console.log(res))
     .then(res => localStorage.setItem('token', res.data.key))
     .catch(err => console.log(err))
 	history.push("/game");
@@ -138,7 +134,7 @@ function SignUp(props) {
           <Grid container justify="flex-end">
             <Grid item>
               <Link
-                onClick={() => props.handleToggle()}
+                onClick={() => history.push("/signin")}
                 variant="body2"
                 style={{ cursor: "pointer" }}
               >

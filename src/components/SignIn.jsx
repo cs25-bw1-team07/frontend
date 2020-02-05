@@ -56,14 +56,10 @@ function SignIn(props) {
   function handleSubmit (e) {
     e.preventDefault();
 	const packet = {
-		headers: {
-			"Access-Control-Allow-Origin": "*"
-		},
 		username,
 		password
 	};
     axios.post(URL, packet)
-    .then(res => console.log(res))
     .then(res => localStorage.setItem('token', res.data.key))
     .catch(err => console.log(err))
 	history.push("/game");
@@ -128,7 +124,7 @@ function SignIn(props) {
             </Grid>
             <Grid item>
               <Link
-                onClick={() => props.handleToggle()}
+                onClick={() => history.push("/signup")}
                 variant="body2"
                 style={{ cursor: "pointer" }}
               >
