@@ -63,9 +63,11 @@ function SignUp(props) {
 	};
 
     axios.post(URL, packet)
-    .then(res => localStorage.setItem('token', res.data.key))
+    .then(res => {
+		localStorage.setItem('token', res.data.key)
+		history.push("/game");
+	})
     .catch(err => console.log(err))
-	history.push("/game");
   }
 
   return (

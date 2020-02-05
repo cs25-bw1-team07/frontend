@@ -13,7 +13,7 @@ import Container from '@material-ui/core/Container';
 import styled from 'styled-components';
 import axios from 'axios';
 
-const URL = "https://lambda-cs25-mud.herokuapp.com/api/login";
+const URL = "https://lambda-cs25-mud.herokuapp.com/api/login/";
 
 const ImgStyle = styled.div`
   img {
@@ -56,13 +56,18 @@ function SignIn(props) {
   function handleSubmit (e) {
     e.preventDefault();
 	const packet = {
-		username,
-		password
+		"username": username,
+		"password": password
 	};
-    axios.post(URL, packet)
-    .then(res => localStorage.setItem('token', res.data.key))
+    axios.post(URL, packet, {headers: 
+		{ "Content-Type": "application/json" }
+	})
+    .then(res => {
+		localStorage.setItem('token', res.data.key)
+		console.log("Here is the res for login: ", res);
+		history.push("/game");
+	})
     .catch(err => console.log(err))
-	history.push("/game");
   }
 
   return (
