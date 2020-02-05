@@ -15,7 +15,7 @@ export default function() {
 			setRooms(res.data);
 		})
 		.catch(err => console.log(err))
-	}, [rooms]);
+	}, []);
 	
 	if (rooms.length === 0) return <div>Loading...</div>;
 
