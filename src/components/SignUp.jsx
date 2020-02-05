@@ -48,14 +48,24 @@ const useStyles = makeStyles(theme => ({
 
 function SignUp(props) {
   const classes = useStyles();
-  const [password, setPassword] = useState("");
+  const [password1, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [username, setUsername] = useState("");
   const history = useHistory();
 
   const handleSubmit = e => {
     e.preventDefault();
-    axios.post(URL, {username, password1: password, password2})
+
+	const packet = {
+		headers: {
+			"Access-Control-Allow-Origin": "*"
+		},
+		password1,
+		password2,
+		username
+	};
+
+    axios.post(URL, packet)
     .then(res => console.log(res))
     .then(res => localStorage.setItem('token', res.data.key))
     .catch(err => console.log(err))
@@ -97,7 +107,7 @@ function SignUp(props) {
                 type="password"
                 id="password"
                 autoComplete="Current Password"
-                value={password}
+                value={password1}
                 onChange={e => setPassword(e.target.value)}
               />
             </Grid>

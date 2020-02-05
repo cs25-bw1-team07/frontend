@@ -50,12 +50,19 @@ const useStyles = makeStyles(theme => ({
 function SignIn(props) {
   const classes = useStyles();
   const history = useHistory();
-  const [user, setUser] = useState("");
+  const [username, setUser] = useState("");
   const [password, setPassword] = useState("");
 
   function handleSubmit (e) {
     e.preventDefault();
-    axios.post(URL, {username: user, password})
+	const packet = {
+		headers: {
+			"Access-Control-Allow-Origin": "*"
+		},
+		username,
+		password
+	};
+    axios.post(URL, packet)
     .then(res => console.log(res))
     .then(res => localStorage.setItem('token', res.data.key))
     .catch(err => console.log(err))
@@ -84,7 +91,7 @@ function SignIn(props) {
             name="user"
             autoComplete="user"
             autoFocus
-            value={user}
+            value={username}
             onChange={e => setUser(e.target.value)}
           />
           <TextField
