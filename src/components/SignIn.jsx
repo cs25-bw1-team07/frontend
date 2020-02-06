@@ -59,12 +59,11 @@ function SignIn(props) {
 		"username": username,
 		"password": password
 	};
-    axios.post(URL, packet, {headers: 
+    axios.post(URL, packet, {headers:
 		{ "Content-Type": "application/json" }
 	})
     .then(res => {
 		localStorage.setItem('token', res.data.key)
-		console.log("Here is the res for login: ", res);
 		history.push("/game");
 	})
     .catch(err => console.log(err))

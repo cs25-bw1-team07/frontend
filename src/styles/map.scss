@@ -1,0 +1,125 @@
+@import "./library.scss";
+
+.game-heading {
+  color: $term-green;
+  position: absolute;
+  top: 5px;
+  left: 30px;
+}
+
+h1 {
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+}
+
+.game-container {
+  width: 95%;
+  height: 85%;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 25px;
+  grid-row-gap: 0px;
+
+  .map-container {
+    background: rgba(0, 0, 0, 0.7);
+    outline: 2px solid $term-green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .map-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 700px;
+
+    .rv-xy-plot {
+      width: 100% !important;
+    }
+
+    .rv-xy-plot__inner {
+      width: 100% !important;
+      overflow: inherit;
+    }
+
+    .rv-xy-plot__axis {
+      display: none;
+    }
+
+    .rv-xy-plot__axis__ticks {
+      display: none;
+    }
+  }
+
+  p {
+    color: $term-green;
+  }
+
+  .movement {
+    height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    .direction-ns {
+      width: 100%;
+      text-align: center;
+      .arrow {
+        font-size: 42px;
+        display: inline-block;
+        margin: 0;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .container-ew {
+      width: 100%;
+      display: flex;
+      .direction-ew {
+        width: 50%;
+        text-align: center;
+        .arrow {
+          font-size: 42px;
+          display: inline-block;
+          margin: 0;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .svg-inline--fa {
+      border-radius: 50%;
+      color: $term-green;
+      margin: 0;
+      padding: 0;
+      transition: all 0.5s ease-in-out;
+
+      &:hover {
+        color: $term-yellow;
+      }
+    }
+  }
+
+  .game-controls {
+    background: rgba(0, 0, 0, 0.7);
+    outline: 2px solid $term-green;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+
+    .room-details {
+      height: 50%;
+      .room-players {
+        border-top: solid 2px $term-green;
+        margin: 30px 0px 0;
+        padding-top: 20px;
+      }
+    }
+  }
+}
