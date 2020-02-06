@@ -16,7 +16,6 @@ import {
   }
 
 export const loginReducer = (state = initialState, {type, payload}) => {
-    console.log('PAYLOAD', payload)
     switch(type){
         case LOGIN_START:
             return {
