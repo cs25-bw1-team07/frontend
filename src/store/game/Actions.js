@@ -31,6 +31,7 @@ export const getMap = room => {
     return dispatch => {
         dispatch({ type: FETCH_MAP_START });
         axiosWithAuth('game')
+            /* /api/adv/rooms/ */
             .get('/api/adv/rooms/')
             .then(res => {
                 let coordinates = [];
@@ -38,6 +39,7 @@ export const getMap = room => {
                     document.querySelector('[style="fill: white; stroke: #ff00c7; stroke-width: 3px;"]').setAttribute('style', 'fill: #150042; stroke: #ff00c7; stroke-width: 3px;')
                 }
                 // extract x and y coordinates and set to state
+                // eslint-disable-next-line
                 res.data.rooms.map((el, i) => {
                     const x = el[6];
                     const y = el[7];
@@ -52,7 +54,6 @@ export const getMap = room => {
                 dispatch({ type: FETCH_MAP_SUCCESS, payload: res });
             })
             .catch(err => {
-                console.log(err);
                 dispatch({ type: FETCH_MAP_ERROR });
             })
     }
@@ -60,7 +61,6 @@ export const getMap = room => {
 
 export const movePlayer = direction => {
     // will need to pass in a string (ex: 'n')
-    console.log(direction);
     return dispatch => {
         dispatch({ type: MOVE_PLAYER_START });
         axiosWithAuth('game')
