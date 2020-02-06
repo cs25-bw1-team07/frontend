@@ -28,7 +28,6 @@ const MapView = props => {
           <LineMarkSeries
             className="linemark-series"
             style={{ strokeWidth: "3px" }}
-            //Styling v here will overide styling ^ above
             lineStyle={{ stroke: "#16c60c" }}
             data={props.data}
           />
