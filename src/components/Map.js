@@ -43,10 +43,13 @@ const GameMap = props => {
             <h1 className="game-heading">Game.py</h1>
             <div className="game-container">
             <div className="map-container">
+                {/* props.map.coordinates */}
+                {console.log('PROPS', props)}
                 <MapView data={props.map.coordinates} />
             </div>
             <div className="game-controls">
-                <RoomDetails details={props.player.data} key={props.player}/>
+                {/* props.player.data */}
+                <RoomDetails details={props.player.data}/>
                 <div className='movement'>
                     <span className='direction-container'>
                         <div className='direction-ns'>
