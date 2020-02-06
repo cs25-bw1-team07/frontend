@@ -14,11 +14,11 @@ toast.configure();
 const GameMap = props => {
     useEffect(() => {
         props.initPlayer()
+        // eslint-disable-next-line
     }, []);
 
     useEffect(() => {
         if(props.player.data) {
-            // if no room in direction
             if(props.player.data.error_msg) {
                 toast(props.player.data.error_msg, {
                     autoClose: 3000,
@@ -29,6 +29,7 @@ const GameMap = props => {
                 props.getMap(props.player.data.title)
             }
         }
+        // eslint-disable-next-line
     }, [props.player]);
 
     return (
@@ -43,10 +44,9 @@ const GameMap = props => {
             <div className="game-container">
             <div className="map-container">
                 <MapView data={props.map.coordinates} />
-                {/* {console.log(props.map.coordinates)} */}
             </div>
             <div className="game-controls">
-                <RoomDetails details={props.player.data} />
+                <RoomDetails details={props.player.data} key={props.player}/>
                 <div className='movement'>
                     <span className='direction-container'>
                         <div className='direction-ns'>
