@@ -1,0 +1,36 @@
+@import "./styles/library.scss";
+@import "./styles/about.scss";
+@import url("https://fonts.googleapis.com/css?family=Inconsolata&display=swap");
+
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0px;
+  display: flex;
+  background: url(./assets/background.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: "Inconsolata", monospace;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spa-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-self: center;
+  position: relative;
+  background: $black;
+  height: 90%;
+  width: 80%;
+  justify-content: space-evenly;
+  align-items: center;
+}
