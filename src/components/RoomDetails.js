@@ -1,7 +1,6 @@
 import React from 'react';
 
 const RoomDetails = props => {
-    console.log(props);
     return (
         <div className='room-details'>
             {props.details && (
@@ -13,6 +12,7 @@ const RoomDetails = props => {
                         {props.details.players.map((el, i) => {
                             return <p>{el}</p>
                         })}
+
                     </div>
                 </>
             )}
