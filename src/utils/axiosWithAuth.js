@@ -3,10 +3,7 @@ import axios from 'axios';
 
 const axiosWithAuth = type => {
     const token = localStorage.getItem("token");
-    // https://lambda-mud-test.herokuapp.com
-    // https://lambda-cs25-mud.herokuapp.com
-    // https://mud-test-ag.herokuapp.com
-    const apiUrl = 'https://mud-test-ag.herokuapp.com';
+    const apiUrl = 'https://lambda-cs25-mud.herokuapp.com';
 
     let key
     if (type === 'auth') {
