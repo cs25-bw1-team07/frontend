@@ -10,9 +10,8 @@ const RoomDetails = props => {
                     <p>{props.details.description}</p>
                     <div className="room-players">Players in {props.details.title}:
                         {props.details.players.map((el, i) => {
-                            return <p>{el}</p>
+                            return <p key={i}>{el}</p>
                         })}
-
                     </div>
                 </>
             )}
