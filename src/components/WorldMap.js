@@ -11,18 +11,17 @@ export default function() {
 			"Authorization": `Token: ${localStorage.getItem("token")}`
 		})
 		.then(res => {
-			console.log("res from GET:", res);
 			setRooms(res.data);
 		})
 		.catch(err => console.log(err))
 	}, []);
-	
+
 	if (rooms.length === 0) return <div>Loading...</div>;
 
 	if (rooms.length) {
 		return (
 			<>
-				The rooms have loaded	
+				The rooms have loaded
 			</>
 		);
 	}
