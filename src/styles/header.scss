@@ -1,0 +1,29 @@
+@import "./library.scss";
+
+.link-container {
+  position: absolute;
+  top: 0;
+  right: 3%;
+  display: flex;
+  font-size: 1.7rem;
+  margin-top: 10px;
+  justify-content: space-evenly;
+
+  a {
+    text-decoration: none;
+  }
+
+  span {
+    color: $term-green;
+    margin-left: 12px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      color: $term-red;
+    }
+  }
+}
+
+.protected {
+  width: 260px;
+}
