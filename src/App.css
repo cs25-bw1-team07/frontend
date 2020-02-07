@@ -1,3 +1,68 @@
 .App {
   background: #d2cbcb;
 }
+
+.container{
+  margin:20px 20px;
+  display:grid;
+  grid-gap: 0px 0px;
+  grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+  /* 150px 150px 150px 150px 150px 150px 150px 150px 150px 150px; */
+  grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
+  /* grid-template-columns: 100px 100px 100px 100px 100px;
+  grid-template-rows: 100px 100px 100px 100px 100px; */
+
+  
+}
+
+.grid{
+  color:white;
+  text-align:center;
+  padding-top:20px;
+}
+.gridBlank{
+    /* width:150;
+  height:150; */
+  background-image:url('./img/roomblank.png');
+  background-repeat: no-repeat;
+}
+.gridItem1{
+  /* width:150;
+  height:150; */
+  background-image:url('./img/room1.png');
+  background-repeat: no-repeat;
+}
+.gridItem2a{
+  /* width:150;
+  height:150; */
+  background-image:url('./img/room2across.png');
+  background-repeat: no-repeat;
+}
+.gridItem2c{
+  /* width:150;
+  height:150; */
+  background-image:url('./img/room2corner.png');
+  background-repeat: no-repeat;
+}
+.gridItem3{
+  /* width:150;
+  height:150; */
+  background-image:url('./img/room3.png');
+  background-repeat: no-repeat;
+}
+.gridItem4{
+  /* width:150;
+  height:150; */
+  background-image:url('./img/room4.png');
+  background-repeat: no-repeat;
+}
+
+.rotater{
+  transform: rotate(90deg);
+}
+.rotatel{
+  transform: rotate(-90deg);
+}
+.rotateo{
+  transform: rotate(180deg);
+}
