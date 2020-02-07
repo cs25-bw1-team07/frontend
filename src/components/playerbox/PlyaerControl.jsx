@@ -2,13 +2,13 @@ import React from 'react'
 import Controls from './Controls'
 
 
-function PlayerControl(){
+function PlayerControl({updatePlayer}){
   return(
     <div className="controls-container">
       <div>
-        <h1>Mad Max - Beyond LambdaD0me</h1>
+        <h1 className="title">Mad Max - Beyond LambdaD0me</h1>
       </div>
-      <Controls/>
+      <Controls updatePlayer={updatePlayer}/>
     </div>
   )
 }

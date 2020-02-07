@@ -7,15 +7,18 @@
   display:grid;
   grid-gap: 0px 0px;
   grid-template-columns: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
-  /* 150px 150px 150px 150px 150px 150px 150px 150px 150px 150px; */
-  grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;
-  /* grid-template-columns: 100px 100px 100px 100px 100px;
-  grid-template-rows: 100px 100px 100px 100px 100px; */
-
-  
+  grid-template-rows: 100px 100px 100px 100px 100px 100px 100px 100px 100px 100px;  
 }
 
+.game-container {
+  display: flex;
+  border: 2px solid red;
+}
 
+.control-box{
+  display: flex;
+  border: 2px solid red;
+}
 
 .grid{
   color:white;

@@ -1,14 +1,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../App.css'
+import PlayerControl from '../components/playerbox/PlyaerControl';
 
 const ROOMS_URL = "https://lambda-cs25-mud.herokuapp.com/api/room/";
 const USER_INIT_URL = "https://lambda-cs25-mud.herokuapp.com/api/adv/init/"
 
 
 function NewGame(props){
-    const [rooms, setRooms] = useState([]);
-    const [playerInfo, setPlayerInfo] = useState({})
+  const [rooms, setRooms] = useState([]);
+  const [playerInfo, setPlayerInfo] = useState({})
+  
+  // function to call on the buttons in the control panel to update playerInfo
+  function updatePlayer(dir){
+    axios.post("https://lambda-cs25-mud.herokuapp.com/api/adv/move/", {"direction": `${dir}`},
+      {
+        headers: {"Authorization": `Token ${localStorage.getItem("token")}`}
+      }
+    )
+    .then(res => setPlayerInfo(res.data))
+    .catch(err => console.log(err))
+  }
 
 	useEffect(() => {
         // Get all the rooms in the game
@@ -47,7 +59,6 @@ function NewGame(props){
             if(rm.e_to>0){
                 dirs.push('e');
             }
-            // console.log("STAT",rm,dirs);
             let retString="grid "
             if (dirs.length==1){
                 retString+= "gridItem1"
@@ -143,30 +154,22 @@ function NewGame(props){
         // console.log("Rooms",roomArray)
     }
     
-    
-
-
 
     return(
-        <>
-            <div className="title">
-                <h1>Mad Max - Beyond LambdaD0me</h1>
-            </div>
-            <div className="container">
-            
-                {roomArray.map(col => {
-                            return col.map(item =>{
-                                console.log("ITEM IS", item)
-                                if(item[1] == playerInfo.room_id){
-                                    console.log("MATCH ON DATA")
-                                    return <div className={`${item[0]} player-square`}>{item[1]}</div>
-                                }
-                                return <div className={item[0]}>{item[1]}</div>
-                            })    
-                })
-                } 
-            </div>  
-        </>
+        <div className="game-container">
+          <div className="container">
+            {roomArray.map(col => {
+              return col.map(item =>{
+                if(item[1] == playerInfo.room_id){
+                    return <div className={`${item[0]} player-square`}>{item[1]}</div>
+                }
+                return <div className={item[0]}>{item[1]}</div>
+              })    
+            })
+            } 
+          </div> 
+          <PlayerControl updatePlayer={updatePlayer}/> 
+        </div>
     );
 }
 
