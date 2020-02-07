@@ -2,24 +2,27 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import '../App.css'
 
-const URL = "https://lambda-cs25-mud.herokuapp.com/api/room/";
-
+const ROOMS_URL = "https://lambda-cs25-mud.herokuapp.com/api/room/";
+const USER_INIT_URL = "https://lambda-cs25-mud.herokuapp.com/api/adv/init/"
 
 
 function NewGame(props){
-    console.log(props);
     const [rooms, setRooms] = useState([]);
+    const [playerInfo, setPlayerInfo] = useState({})
+
 	useEffect(() => {
-		axios.get(URL, {
-			"Authorization": `Token: ${localStorage.getItem("token")}`
-		})
-		.then(res => {
-			// console.log("res from GET:", res);
-			setRooms(res.data);
-		})
-		.catch(err => console.log(err))
+        // Get all the rooms in the game
+		axios.get(ROOMS_URL, {"Authorization": `Token: ${localStorage.getItem("token")}`})
+		.then(res => setRooms(res.data))
+        .catch(err => console.log(err))
+        
+        // Get the player data
+        axios.get(USER_INIT_URL, {headers: {"Authorization": `Token ${localStorage.getItem("token")}`}})
+        .then(res => setPlayerInfo(res.data))
+        .catch(err => console.log(err))
 	}, []);
 
+    
     let roomArray=Array(10);
     if (rooms.length>0){
         for (let i=0;i<roomArray.length;i++){
@@ -110,8 +113,8 @@ function NewGame(props){
             }
             // console.log("XY",x,y);
 
-            let extras=""
-            roomArray[y][x]=[findClass(current_room),counter+extras];
+            let extras=`${current_room.id}`
+            roomArray[y][x]=[findClass(current_room),extras];
 
 
             //PUSH NEW ROOMS
@@ -150,23 +153,18 @@ function NewGame(props){
                 <h1>Mad Max - Beyond LambdaD0me</h1>
             </div>
             <div className="container">
-                {/* <div className="gridBlank"></div>
-                <div className="gridItem1"></div>
-                <div className="gridItem2a"></div>
-                <div className="gridItem2c"></div>
-                <div className="gridItem3"></div>
-                <div className="gridItem4"></div>
-                <div className="gridItem1 rotatel"></div>
-                <div className="gridItem1 rotater"></div>
-                <div className="gridItem1 rotateo"></div> */}
+            
                 {roomArray.map(col => {
                             return col.map(item =>{
-                            return <div className={item[0]}></div>
+                                console.log("ITEM IS", item)
+                                if(item[1] == playerInfo.room_id){
+                                    console.log("MATCH ON DATA")
+                                    return <div className={`${item[0]} player-square`}>{item[1]}</div>
+                                }
+                                return <div className={item[0]}>{item[1]}</div>
                             })    
                 })
                 } 
-
-
             </div>  
         </>
     );

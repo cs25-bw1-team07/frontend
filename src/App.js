@@ -18,8 +18,8 @@ function App() {
 		<Switch>
 			<Route exact path="/" component={SignUp} />
 			<Route path="/signin" component={SignIn} />
-			<PrivateRoute path="/game" component={WorldMap} />
-			<PrivateRoute path="/new" component={NewGame} />
+			<PrivateRoute path="/game" component={NewGame} />
+			{/* <PrivateRoute path="/new" component={NewGame} /> */}
 		</Switch>
       </header>
     </div>
