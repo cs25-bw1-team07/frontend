@@ -141,32 +141,18 @@ function NewGame(props){
     }
     
     
-
-
-
     return(
         <>
             <div className="title">
                 <h1>Mad Max - Beyond LambdaD0me</h1>
             </div>
             <div className="container">
-                {/* <div className="gridBlank"></div>
-                <div className="gridItem1"></div>
-                <div className="gridItem2a"></div>
-                <div className="gridItem2c"></div>
-                <div className="gridItem3"></div>
-                <div className="gridItem4"></div>
-                <div className="gridItem1 rotatel"></div>
-                <div className="gridItem1 rotater"></div>
-                <div className="gridItem1 rotateo"></div> */}
                 {roomArray.map(col => {
                             return col.map(item =>{
                             return <div className={item[0]}></div>
                             })    
                 })
                 } 
-
-
             </div>  
         </>
     );
