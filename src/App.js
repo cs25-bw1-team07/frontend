@@ -6,6 +6,7 @@ import {
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import WorldMap from "./components/WorldMap.js";
+import NewGame from "./components/NewGame";
 import PrivateRoute from "./components/utils/PrivateRoute.js";
 
 import './App.css'
@@ -17,7 +18,8 @@ function App() {
 		<Switch>
 			<Route exact path="/" component={SignUp} />
 			<Route path="/signin" component={SignIn} />
-			<PrivateRoute path="/game" component={WorldMap} />
+			<PrivateRoute path="/game" component={NewGame} />
+			{/* <PrivateRoute path="/new" component={NewGame} /> */}
 		</Switch>
       </header>
     </div>
